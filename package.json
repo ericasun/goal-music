@@ -1,0 +1,11 @@
+{
+  "name": "",
+  "version": "",
+  "dependencies": {
+    "leancloud-storage": "^3.6.1",
+    "moxie": "0.0.0",
+    "plupload": "^2.3.2",
+    "qiniu": "^7.1.3",
+    "qiniu-js": "^1.0.22"
+  }
+}
