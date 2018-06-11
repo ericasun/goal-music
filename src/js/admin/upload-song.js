@@ -64,6 +64,9 @@ window.x = 'open'
                     },
                     'UploadComplete': function() {
                         //队列文件处理完毕后,处理相关的事情
+                        // newSongClick.click()
+                        songFormArea.classList.remove('hidden')
+                        songFormArea.classList.add('show')
                     },
                 }
             });

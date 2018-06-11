@@ -3,10 +3,10 @@
     let view = {
         el:'#siteLoading',
         show(){
-            $(this.el).addClass('active')
+            $(this.el).addClass('show')
         },
         hide(){
-            $(this.el).removeClass('active')
+            $(this.el).removeClass('show')
         }
     }
     let controller = {

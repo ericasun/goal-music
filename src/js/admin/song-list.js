@@ -1,24 +1,38 @@
 {
     let view = {
-        el:'#songList-container',
+        el:'.songList-container',
         template:`
-            <ul class="songList">
-            </ul>
+            <table></table>
         `,
         render(data){
             let $el = $(this.el)
             $el.html(this.template)
             let {songs, selectedSongId} = data
-            let liList = songs.map((song)=>{
-                let $li = $('<li></li>').text(song.name).attr('data-song-id',song.id)
+            let trList = songs.map((song)=>{
+                // console.log("歌曲列表")
+                // console.log(song)
+
+                let $tr = $('<tr></tr>')
+                let $thId = $('<th></th>').text(song.length).attr('data-song-id',song.id)
+                let $thName = $('<th></th>').text(song.name).attr('data-song-id',song.id)
+                let $thSinger = $('<th></th>').text(song.singer).attr('data-song-id',song.id)
+                let $thAlbum = $('<th></th>').text(song.album).attr('data-song-id',song.id)
+                let $thFormat = $('<th></th>').text(song.format).attr('data-song-id',song.id)
+                let $thSize = $('<th></th>').text(song.size).attr('data-song-id',song.id)
+                let $thUploadTime = $('<th></th>').text(song.uploadTime).attr('data-song-id',song.id)
+
+                $tr.append($thId,$thName,$thSinger,$thAlbum,$thFormat,$thSize,$thUploadTime)
+
                 if(song.id === selectedSongId){
-                    $li.addClass('active')
+                    $tr.addClass('active')
+                    $('#changeSongClick').removeAttr("disabled");
                 }
-                return $li
+                return $tr
             })
-            $el.find('ul').empty()
-            liList.map((domLi)=>{
-                $el.find('ul').append(domLi)
+
+            $el.find('table').empty()
+            trList.map((domLi)=>{
+                $el.find('table').append(domLi)
             })
         },
         clearActive(){
@@ -55,7 +69,7 @@
             })
         },
         bindEvents(){
-            $(this.view.el).on('click','li',(e)=>{
+            $(this.view.el).on('click','th',(e)=>{
                 let songId = e.currentTarget.getAttribute('data-song-id')
                 this.model.data.selectedSongId = songId
                 this.view.render(this.model.data)
